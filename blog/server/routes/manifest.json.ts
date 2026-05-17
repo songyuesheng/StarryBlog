@@ -27,13 +27,8 @@ export default defineEventHandler(async event => {
       icons: [
         {
           src: blog.favicon || '/favicon.ico',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: blog.favicon || '/favicon.ico',
-          sizes: '512x512',
-          type: 'image/png',
+          sizes: 'any',
+          type: 'image/x-icon',
         },
       ],
     };
@@ -48,7 +43,7 @@ export default defineEventHandler(async event => {
       background_color: '#ffffff',
       display: 'standalone',
       start_url: '/',
-      icons: [{ src: '/favicon.ico', sizes: '192x192', type: 'image/png' }],
+      icons: [{ src: '/favicon.ico', sizes: 'any', type: 'image/x-icon' }],
     };
   }
 });

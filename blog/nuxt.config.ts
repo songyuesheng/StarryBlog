@@ -76,7 +76,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiInternalUrl: process.env.NUXT_API_INTERNAL_URL || '',
     public: {
-      apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',
+      apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api/v1',
     },
   },
 
