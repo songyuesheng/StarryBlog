@@ -1,6 +1,7 @@
 export default defineEventHandler(async event => {
   const config = useRuntimeConfig();
-  const backendUrl = config.public.apiUrl.replace(/\/+$/, '').replace(/\/api\/v\d+$/, '');
+  const backendBaseUrl = (config.apiInternalUrl || config.public.apiUrl) as string;
+  const backendUrl = backendBaseUrl.replace(/\/+$/, '').replace(/\/api\/v\d+$/, '');
 
   try {
     const response = await fetch(`${backendUrl}/rss.xml`);

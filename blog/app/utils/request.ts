@@ -14,8 +14,11 @@ type HttpMethod =
   | 'OPTIONS'
   | 'TRACE';
 
-// 获取 API baseURL
-const getBaseURL = () => useRuntimeConfig().public.apiUrl as string;
+// 浏览器走公开地址，SSR 走服务端内部地址
+const getBaseURL = () => {
+  const config = useRuntimeConfig();
+  return (import.meta.server ? config.apiInternalUrl : config.public.apiUrl) as string;
+};
 
 // Token 刷新状态
 let isRefreshing = false;
@@ -57,7 +60,7 @@ export async function apiRequest<T = any>(
   try {
     return await $fetch<T>(url, {
       ...options,
-      baseURL: config.public.apiUrl,
+      baseURL: getBaseURL(),
       headers,
       credentials: 'include', // 发送 Cookie
     } as any);
